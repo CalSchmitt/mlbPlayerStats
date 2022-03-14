@@ -6,15 +6,18 @@ searchPlayer.addEventListener('keyup', (e) => {
     const playerText = e.target.value;
     if(playerText !== ''){
         player.getPlayer(playerText)
-            .then(data=>{
-                if(data.player.message === 'Not Found'){
-                    ui.showAlert('User not found', 'alert alert-danger');
-                }else{
-                    ui.showProfile(data.responseData);
+        .then(data=>{
+            if(data.player.message === 'Object not found'){
+                //Show alert
+            }else{
+                //Show player profile
+                for(var i = 0; i < data.player.length; i++){
+                    ui.showProfile(data.player[i])
                 }
-            })
+            }
+        })
     }else{
-        ui.clearProfile();
+        //Clear player profile
     }
 
 })
